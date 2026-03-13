@@ -1,0 +1,104 @@
+2026-03-09 14:27:15,385 - __main__ - INFO - Logging works!
+2026-03-09 14:27:15,385 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-09 14:27:18,147 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:27:18,161 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-09 14:27:18,200 - src.data_loader - INFO - Loading 
+2026-03-09 14:27:18,200 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:27:18,248 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
+2026-03-09 14:27:18,291 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-09 14:27:18,291 - src.feature_engineering - INFO - Creating new features!
+2026-03-09 14:34:17,974 - __main__ - INFO - Logging works!
+2026-03-09 14:34:17,974 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-09 14:34:21,309 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:34:21,322 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-09 14:34:21,363 - src.data_loader - INFO - Loading 
+2026-03-09 14:34:21,364 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:34:21,408 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
+2026-03-09 14:34:21,445 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-09 14:34:21,445 - src.feature_engineering - INFO - Creating new features!
+2026-03-09 14:34:57,126 - __main__ - INFO - Logging works!
+2026-03-09 14:34:57,126 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-09 14:34:59,891 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:34:59,892 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-09 14:34:59,945 - src.data_loader - INFO - Loading 
+2026-03-09 14:34:59,945 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:34:59,990 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
+2026-03-09 14:35:00,037 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-09 14:35:00,039 - src.feature_engineering - INFO - Creating new features!
+2026-03-09 14:35:45,326 - __main__ - INFO - Logging works!
+2026-03-09 14:35:45,331 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-09 14:35:47,978 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:35:47,978 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-09 14:35:48,022 - src.data_loader - INFO - Loading 
+2026-03-09 14:35:48,026 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:35:48,073 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
+2026-03-09 14:35:48,122 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-09 14:35:48,122 - src.feature_engineering - INFO - Creating new features!
+2026-03-09 14:35:52,726 - src.evaluation - INFO - Random Forest MAE: 0.000278
+2026-03-09 14:35:52,726 - src.evaluation - INFO - Random Forest RMSE: 0.000515
+2026-03-09 14:35:52,726 - src.evaluation - INFO - Random Forest R2: 0.9854
+2026-03-09 14:35:52,726 - src.evaluation - INFO - Random Forest Directional Accuracy: 1.000
+2026-03-09 14:35:52,754 - src.evaluation - INFO - Random Forest Top Features:
+target_volatility    0.991057
+vol_lag_1            0.007810
+mean_30              0.000263
+volume               0.000254
+return_lag_1         0.000087
+vol_lag_10           0.000063
+returns              0.000061
+open                 0.000056
+low                  0.000054
+close                0.000051
+dtype: float64
+2026-03-09 14:38:05,223 - __main__ - INFO - Logging works!
+2026-03-09 14:38:05,223 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-09 14:38:06,677 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:38:06,677 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-09 14:38:06,721 - src.data_loader - INFO - Loading 
+2026-03-09 14:38:06,730 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:38:06,784 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
+2026-03-09 14:38:06,831 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-09 14:38:06,831 - src.feature_engineering - INFO - Creating new features!
+2026-03-09 14:38:06,831 - src.feature_engineering - INFO - Features created succesfully!
+2026-03-09 14:38:11,028 - src.evaluation - INFO - Random Forest MAE: 0.000452
+2026-03-09 14:38:11,029 - src.evaluation - INFO - Random Forest RMSE: 0.000793
+2026-03-09 14:38:11,029 - src.evaluation - INFO - Random Forest R2: 0.9653
+2026-03-09 14:38:11,029 - src.evaluation - INFO - Random Forest Directional Accuracy: 1.000
+2026-03-09 14:38:11,057 - src.evaluation - INFO - Random Forest Top Features:
+vol_lag_1       0.996212
+returns         0.000685
+vol_lag_10      0.000589
+volume          0.000445
+mean_30         0.000428
+mean_10         0.000250
+mean_5          0.000231
+vol_lag_5       0.000196
+return_lag_1    0.000184
+low             0.000167
+dtype: float64
+2026-03-09 14:40:40,932 - __main__ - INFO - Logging works!
+2026-03-09 14:40:40,932 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-09 14:40:43,453 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:40:43,455 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-09 14:40:43,500 - src.data_loader - INFO - Loading 
+2026-03-09 14:40:43,510 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-09 14:40:43,560 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
+2026-03-09 14:40:43,593 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-09 14:40:43,593 - src.feature_engineering - INFO - Creating new features!
+2026-03-09 14:40:43,614 - src.feature_engineering - INFO - Features created succesfully!
+2026-03-09 14:40:46,827 - src.evaluation - INFO - Random Forest MAE: 0.000447
+2026-03-09 14:40:46,827 - src.evaluation - INFO - Random Forest RMSE: 0.000785
+2026-03-09 14:40:46,828 - src.evaluation - INFO - Random Forest R2: 0.9660
+2026-03-09 14:40:46,828 - src.evaluation - INFO - Random Forest Directional Accuracy: 1.000
+2026-03-09 14:40:46,879 - src.evaluation - INFO - Random Forest Top Features:
+vol_lag_1       0.996258
+returns         0.000730
+vol_lag_10      0.000640
+mean_30         0.000478
+volume          0.000422
+mean_5          0.000348
+mean_10         0.000344
+return_lag_1    0.000270
+vol_lag_5       0.000240
+return_lag_5    0.000185
+dtype: float64

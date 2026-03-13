@@ -1,0 +1,5 @@
+data/raw/
+.venv
+config
+data_clean.ipynb
+__pycache__/
