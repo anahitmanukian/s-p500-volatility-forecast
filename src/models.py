@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 # In Time Series, we must keep the order.
 def split_data(df: pd.DataFrame):
-    cols_to_drop = ['y', 'target_volatility', 'close', 'high', 'low', 'open']
+    cols_to_drop = ['y', 'target_volatility', 'close', 'high', 'low', 'open', 'returns','volume']
 
     # Only keep the Lags and the Means
     X = df.drop(columns=cols_to_drop)
@@ -25,8 +25,10 @@ def split_data(df: pd.DataFrame):
 def run_random_forest(X_train, X_test, y_train):
     model = RandomForestRegressor(
         n_estimators=config['models']['random_forest']['n_estimators'],
-        max_depth=config['models']['random_forest']['max_depth']
-        # random_state=config['random_seed']
+        max_depth=config['models']['random_forest']['max_depth'],
+        min_samples_leaf=10,      # prevents tiny leaf nodes
+        max_features=0.5,         # use only 50% of features per split
+        random_state=42
     )
 
     model.fit(X_train, y_train)
@@ -36,19 +38,10 @@ def run_random_forest(X_train, X_test, y_train):
 
 # 3. XGBoost Regressor
 def run_xgboost(X_train, X_test, y_train, y_test):
-    # feature_cols = [
-    #     'returns', 'return_lag_1', 'return_lag_5', 'return_lag_10',
-    #     'vol_lag_1', 'vol_lag_5', 'vol_lag_10',
-    #     'mean_5', 'mean_10', 'mean_30', 'volume'
-    # ]
-    
-    # X = df[feature_cols]
-    # y = df['y']
     model = xgb.XGBRegressor(
         n_estimators=config['models']['xgboost']['n_estimators'],
         learning_rate=config['models']['xgboost']['learning_rate'],
         max_depth=config['models']['xgboost']['max_depth']
-        # random_state=config['random_seed']
     )
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
@@ -56,23 +49,82 @@ def run_xgboost(X_train, X_test, y_train, y_test):
     return model, y_pred
 
 # 4. ARIMA Model
-# Note: ARIMA usually only looks at the target variable itself (univariate)
-def run_arima(df):
-    # ARIMA needs a series, not a matrix. We use the 'target_volatility'
-    series = df['target_volatility']
-    train_size = int(len(series) * 0.8)
-    train, test = series[0:train_size], series[train_size:len(series)]
+# def run_arima(df):
+#     series = df['y'].reset_index(drop=True)
+#     train_size = int(len(series) * 0.8)
     
-    # Configuration from your YAML
+#     train = series[:train_size]
+#     test  = series[train_size:]
+#     test_dates = df.index[train_size:]  # grab dates from original df before reset
+    
+#     p = config['models']['arima']['p']
+#     d = config['models']['arima']['d']
+#     q = config['models']['arima']['q']
+    
+#     model = ARIMA(train, order=(p, d, q))
+#     model_fit = model.fit(method_kwargs={"maxiter": 500})
+    
+#     forecast = model_fit.forecast(steps=len(test))
+#     mae = mean_absolute_error(test, forecast)
+#     logger.info(f"ARIMA Mean Absolute Error: {mae:.6f}")
+    
+#     return model_fit, forecast, test_dates
+
+
+def run_arima(df, max_steps=None):
+    series = df['y'].reset_index(drop=True)
+    train_size = int(len(series) * 0.8)
+    
+    train = series[:train_size]
+    test  = series[train_size:]
+    test_dates = df.index[train_size:]
+    
     p = config['models']['arima']['p']
     d = config['models']['arima']['d']
     q = config['models']['arima']['q']
     
-    model = ARIMA(train, order=(p, d, q))
-    model_fit = model.fit()
+    steps = min(len(test), max_steps) if max_steps else len(test)
+    logger.info(f"Starting ARIMA rolling forecast for {steps} steps...")
     
-    # Forecast
-    forecast = model_fit.forecast(steps=len(test))
-    mae = mean_absolute_error(test, forecast)
-    logger.info(f"ARIMA Mean Absolute Error: {mae:.6f}")
-    return model_fit, forecast
+    predictions = []
+    window = 252  # only use last 1 year of data — much faster, often better
+    
+    for i in range(steps):
+        # Fixed window instead of ever-growing history
+        history = series[max(0, train_size + i - window) : train_size + i].tolist()
+        
+        model = ARIMA(history, order=(p, d, q))
+        model_fit = model.fit(method_kwargs={"maxiter": 200})  # reduce maxiter too
+        
+        pred = model_fit.forecast(steps=1)
+        predictions.append(pred[0])
+        
+        if (i + 1) % 100 == 0:
+            logger.info(f"  Rolling forecast: {i+1}/{steps} steps done")
+    
+    forecast = pd.Series(predictions)
+    mae = mean_absolute_error(test[:steps], forecast)
+    logger.info(f"ARIMA Rolling Forecast MAE: {mae:.6f}")
+    
+    return model_fit, forecast, test_dates[:steps]
+# ```
+
+# ---
+
+# **Step by step what happens on each iteration:**
+# ```
+# i=0:
+#   history = [day1, day2, ... day5020]       ← all training data
+#   fit ARIMA on history
+#   predict day 5021 → predictions = [0.0098]
+#   reveal true day5021 = 0.0091
+#   history = [day1, ... day5020, day5021]    ← grow by 1
+
+# i=1:
+#   history = [day1, day2, ... day5021]       ← one day longer
+#   fit ARIMA on history
+#   predict day 5022 → predictions = [0.0098, 0.0094]
+#   reveal true day5022 = 0.0089
+#   history = [day1, ... day5021, day5022]    ← grow by 1
+
+# ... repeats 1256 times

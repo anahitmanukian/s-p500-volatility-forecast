@@ -51,5 +51,7 @@ def load_data(path=None):
     
     logger.info(f"Loading data from {path}")
     
-    df = pd.read_csv(path)
+    # df = pd.read_csv(path)
+    df = pd.read_csv(path, index_col=0, parse_dates=True)
+    
     return df

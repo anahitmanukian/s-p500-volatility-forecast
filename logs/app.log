@@ -1,104 +1,139 @@
-2026-03-09 14:27:15,385 - __main__ - INFO - Logging works!
-2026-03-09 14:27:15,385 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
-2026-03-09 14:27:18,147 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:27:18,161 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
-2026-03-09 14:27:18,200 - src.data_loader - INFO - Loading 
-2026-03-09 14:27:18,200 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:27:18,248 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
-2026-03-09 14:27:18,291 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
-2026-03-09 14:27:18,291 - src.feature_engineering - INFO - Creating new features!
-2026-03-09 14:34:17,974 - __main__ - INFO - Logging works!
-2026-03-09 14:34:17,974 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
-2026-03-09 14:34:21,309 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:34:21,322 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
-2026-03-09 14:34:21,363 - src.data_loader - INFO - Loading 
-2026-03-09 14:34:21,364 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:34:21,408 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
-2026-03-09 14:34:21,445 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
-2026-03-09 14:34:21,445 - src.feature_engineering - INFO - Creating new features!
-2026-03-09 14:34:57,126 - __main__ - INFO - Logging works!
-2026-03-09 14:34:57,126 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
-2026-03-09 14:34:59,891 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:34:59,892 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
-2026-03-09 14:34:59,945 - src.data_loader - INFO - Loading 
-2026-03-09 14:34:59,945 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:34:59,990 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
-2026-03-09 14:35:00,037 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
-2026-03-09 14:35:00,039 - src.feature_engineering - INFO - Creating new features!
-2026-03-09 14:35:45,326 - __main__ - INFO - Logging works!
-2026-03-09 14:35:45,331 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
-2026-03-09 14:35:47,978 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:35:47,978 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
-2026-03-09 14:35:48,022 - src.data_loader - INFO - Loading 
-2026-03-09 14:35:48,026 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:35:48,073 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
-2026-03-09 14:35:48,122 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
-2026-03-09 14:35:48,122 - src.feature_engineering - INFO - Creating new features!
-2026-03-09 14:35:52,726 - src.evaluation - INFO - Random Forest MAE: 0.000278
-2026-03-09 14:35:52,726 - src.evaluation - INFO - Random Forest RMSE: 0.000515
-2026-03-09 14:35:52,726 - src.evaluation - INFO - Random Forest R2: 0.9854
-2026-03-09 14:35:52,726 - src.evaluation - INFO - Random Forest Directional Accuracy: 1.000
-2026-03-09 14:35:52,754 - src.evaluation - INFO - Random Forest Top Features:
-target_volatility    0.991057
-vol_lag_1            0.007810
-mean_30              0.000263
-volume               0.000254
-return_lag_1         0.000087
-vol_lag_10           0.000063
-returns              0.000061
-open                 0.000056
-low                  0.000054
-close                0.000051
+2026-03-15 19:23:00,047 - __main__ - INFO - Logging works!
+2026-03-15 19:23:00,055 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-15 19:23:05,569 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 19:23:05,572 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-15 19:23:05,633 - src.data_loader - INFO - Loading 
+2026-03-15 19:23:05,641 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 19:23:05,689 - src.data_cleaning - INFO - Cleaned data: (6588, 5)
+2026-03-15 19:23:05,769 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-15 19:23:05,772 - src.feature_engineering - INFO - Creating new features!
+2026-03-15 19:23:05,792 - src.feature_engineering - INFO - Features created successfully!
+2026-03-15 19:23:06,127 - src.feature_engineering - INFO - Saved cleaned data to data/processed/feature_engineering.csv
+2026-03-15 19:23:06,127 - src.data_loader - INFO - Loading 
+2026-03-15 19:23:06,127 - src.data_loader - INFO - Loading data from data/processed/feature_engineering.csv
+2026-03-15 19:23:06,218 - src.models - INFO - Starting ARIMA rolling forecast for 1256 steps...
+2026-03-15 19:24:38,293 - __main__ - INFO - Logging works!
+2026-03-15 19:24:38,305 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-15 19:24:38,931 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 19:24:38,931 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-15 19:24:39,003 - src.data_loader - INFO - Loading 
+2026-03-15 19:24:39,014 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 19:24:39,068 - src.data_cleaning - INFO - Cleaned data: (6588, 5)
+2026-03-15 19:24:39,134 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-15 19:24:39,134 - src.feature_engineering - INFO - Creating new features!
+2026-03-15 19:24:39,173 - src.feature_engineering - INFO - Features created successfully!
+2026-03-15 19:24:39,497 - src.feature_engineering - INFO - Saved cleaned data to data/processed/feature_engineering.csv
+2026-03-15 19:24:39,497 - src.data_loader - INFO - Loading 
+2026-03-15 19:24:39,497 - src.data_loader - INFO - Loading data from data/processed/feature_engineering.csv
+2026-03-15 19:24:39,582 - src.models - INFO - Starting ARIMA rolling forecast for 1256 steps...
+2026-03-15 19:26:38,211 - __main__ - INFO - Logging works!
+2026-03-15 19:26:38,211 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-15 19:26:39,578 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 19:26:39,578 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-15 19:26:39,637 - src.data_loader - INFO - Loading 
+2026-03-15 19:26:39,645 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 19:26:39,689 - src.data_cleaning - INFO - Cleaned data: (6588, 5)
+2026-03-15 19:26:39,760 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-15 19:26:39,762 - src.feature_engineering - INFO - Creating new features!
+2026-03-15 19:26:39,792 - src.feature_engineering - INFO - Features created successfully!
+2026-03-15 19:26:40,177 - src.feature_engineering - INFO - Saved cleaned data to data/processed/feature_engineering.csv
+2026-03-15 19:26:40,184 - src.data_loader - INFO - Loading 
+2026-03-15 19:26:40,184 - src.data_loader - INFO - Loading data from data/processed/feature_engineering.csv
+2026-03-15 19:26:40,301 - src.models - INFO - Starting ARIMA rolling forecast for 1256 steps...
+2026-03-15 19:29:57,987 - src.models - INFO -   Rolling forecast: 100/1256 steps done
+2026-03-15 19:33:12,299 - src.models - INFO -   Rolling forecast: 200/1256 steps done
+2026-03-15 19:36:38,545 - src.models - INFO -   Rolling forecast: 300/1256 steps done
+2026-03-15 19:40:14,097 - src.models - INFO -   Rolling forecast: 400/1256 steps done
+2026-03-15 19:54:19,443 - src.models - INFO -   Rolling forecast: 500/1256 steps done
+2026-03-15 19:58:20,286 - src.models - INFO -   Rolling forecast: 600/1256 steps done
+2026-03-15 20:01:55,926 - src.models - INFO -   Rolling forecast: 700/1256 steps done
+2026-03-15 20:06:27,757 - src.models - INFO -   Rolling forecast: 800/1256 steps done
+2026-03-15 20:38:56,404 - __main__ - INFO - Logging works!
+2026-03-15 20:38:56,414 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-15 20:38:57,664 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 20:38:57,664 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-15 20:38:57,721 - src.data_loader - INFO - Loading 
+2026-03-15 20:38:57,732 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 20:38:57,772 - src.data_cleaning - INFO - Cleaned data: (6588, 5)
+2026-03-15 20:38:57,849 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-15 20:38:57,851 - src.feature_engineering - INFO - Creating new features!
+2026-03-15 20:38:57,866 - src.feature_engineering - INFO - Features created successfully!
+2026-03-15 20:38:58,224 - src.feature_engineering - INFO - Saved cleaned data to data/processed/feature_engineering.csv
+2026-03-15 20:38:58,224 - src.data_loader - INFO - Loading 
+2026-03-15 20:38:58,227 - src.data_loader - INFO - Loading data from data/processed/feature_engineering.csv
+2026-03-15 20:38:58,312 - src.models - INFO - Starting ARIMA rolling forecast for 1256 steps...
+2026-03-15 20:39:23,229 - src.models - INFO -   Rolling forecast: 100/1256 steps done
+2026-03-15 20:39:41,839 - src.models - INFO -   Rolling forecast: 200/1256 steps done
+2026-03-15 20:40:11,761 - src.models - INFO -   Rolling forecast: 300/1256 steps done
+2026-03-15 20:40:42,536 - src.models - INFO -   Rolling forecast: 400/1256 steps done
+2026-03-15 20:40:59,733 - src.models - INFO -   Rolling forecast: 500/1256 steps done
+2026-03-15 20:41:16,117 - src.models - INFO -   Rolling forecast: 600/1256 steps done
+2026-03-15 20:41:33,958 - src.models - INFO -   Rolling forecast: 700/1256 steps done
+2026-03-15 20:41:47,258 - src.models - INFO -   Rolling forecast: 800/1256 steps done
+2026-03-15 20:42:12,145 - src.models - INFO -   Rolling forecast: 900/1256 steps done
+2026-03-15 20:42:37,224 - src.models - INFO -   Rolling forecast: 1000/1256 steps done
+2026-03-15 20:47:21,900 - src.models - INFO -   Rolling forecast: 1100/1256 steps done
+2026-03-15 20:47:42,275 - src.models - INFO -   Rolling forecast: 1200/1256 steps done
+2026-03-15 20:47:52,696 - src.models - INFO - ARIMA Rolling Forecast MAE: 0.000284
+2026-03-15 20:47:53,540 - src.evaluation - INFO - Saved plot to reports/arima_evaluation.png
+2026-03-15 20:54:28,119 - __main__ - INFO - Logging works!
+2026-03-15 20:54:28,134 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
+2026-03-15 20:54:28,919 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 20:54:28,923 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
+2026-03-15 20:54:28,989 - src.data_loader - INFO - Loading 
+2026-03-15 20:54:28,999 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
+2026-03-15 20:54:29,051 - src.data_cleaning - INFO - Cleaned data: (6588, 5)
+2026-03-15 20:54:29,134 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
+2026-03-15 20:54:29,134 - src.feature_engineering - INFO - Creating new features!
+2026-03-15 20:54:29,171 - src.feature_engineering - INFO - Features created successfully!
+2026-03-15 20:54:29,548 - src.feature_engineering - INFO - Saved cleaned data to data/processed/feature_engineering.csv
+2026-03-15 20:54:29,548 - src.data_loader - INFO - Loading 
+2026-03-15 20:54:29,548 - src.data_loader - INFO - Loading data from data/processed/feature_engineering.csv
+2026-03-15 20:54:34,668 - src.evaluation - INFO - Random Forest MAE: 0.007315
+2026-03-15 20:54:34,668 - src.evaluation - INFO - Random Forest RMSE: 0.008712
+2026-03-15 20:54:34,668 - src.evaluation - INFO - Random Forest R2: -3.0628
+2026-03-15 20:54:34,668 - src.evaluation - INFO - Random Forest Directional Accuracy: 0.494
+2026-03-15 20:54:34,753 - src.evaluation - INFO - Random Forest Top Features:
+vol_lag_1       0.288289
+range           0.147066
+dist_ma30       0.090370
+vol_lag_5       0.073387
+mean_30         0.059820
+return_30       0.054046
+vol_lag_21      0.052189
+mean_10         0.041890
+volume_lag_1    0.031576
+vol_lag_63      0.031315
 dtype: float64
-2026-03-09 14:38:05,223 - __main__ - INFO - Logging works!
-2026-03-09 14:38:05,223 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
-2026-03-09 14:38:06,677 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:38:06,677 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
-2026-03-09 14:38:06,721 - src.data_loader - INFO - Loading 
-2026-03-09 14:38:06,730 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:38:06,784 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
-2026-03-09 14:38:06,831 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
-2026-03-09 14:38:06,831 - src.feature_engineering - INFO - Creating new features!
-2026-03-09 14:38:06,831 - src.feature_engineering - INFO - Features created succesfully!
-2026-03-09 14:38:11,028 - src.evaluation - INFO - Random Forest MAE: 0.000452
-2026-03-09 14:38:11,029 - src.evaluation - INFO - Random Forest RMSE: 0.000793
-2026-03-09 14:38:11,029 - src.evaluation - INFO - Random Forest R2: 0.9653
-2026-03-09 14:38:11,029 - src.evaluation - INFO - Random Forest Directional Accuracy: 1.000
-2026-03-09 14:38:11,057 - src.evaluation - INFO - Random Forest Top Features:
-vol_lag_1       0.996212
-returns         0.000685
-vol_lag_10      0.000589
-volume          0.000445
-mean_30         0.000428
-mean_10         0.000250
-mean_5          0.000231
-vol_lag_5       0.000196
-return_lag_1    0.000184
-low             0.000167
-dtype: float64
-2026-03-09 14:40:40,932 - __main__ - INFO - Logging works!
-2026-03-09 14:40:40,932 - src.data_loader - INFO - Downloading S&P 500 data from 2000-01-01
-2026-03-09 14:40:43,453 - src.data_loader - INFO - Saving data to C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:40:43,455 - src.data_loader - INFO - Data columns: ['Close', 'High', 'Low', 'Open', 'Volume']
-2026-03-09 14:40:43,500 - src.data_loader - INFO - Loading 
-2026-03-09 14:40:43,510 - src.data_loader - INFO - Loading data from C:\Users\Asus\Desktop\s&p500\data\raw\sp500.csv
-2026-03-09 14:40:43,560 - src.data_cleaning - INFO - Cleaned data: (6583, 5)
-2026-03-09 14:40:43,593 - src.data_cleaning - INFO - Saved cleaned data to data/processed/sp500_cleaned.csv
-2026-03-09 14:40:43,593 - src.feature_engineering - INFO - Creating new features!
-2026-03-09 14:40:43,614 - src.feature_engineering - INFO - Features created succesfully!
-2026-03-09 14:40:46,827 - src.evaluation - INFO - Random Forest MAE: 0.000447
-2026-03-09 14:40:46,827 - src.evaluation - INFO - Random Forest RMSE: 0.000785
-2026-03-09 14:40:46,828 - src.evaluation - INFO - Random Forest R2: 0.9660
-2026-03-09 14:40:46,828 - src.evaluation - INFO - Random Forest Directional Accuracy: 1.000
-2026-03-09 14:40:46,879 - src.evaluation - INFO - Random Forest Top Features:
-vol_lag_1       0.996258
-returns         0.000730
-vol_lag_10      0.000640
-mean_30         0.000478
-volume          0.000422
-mean_5          0.000348
-mean_10         0.000344
-return_lag_1    0.000270
-vol_lag_5       0.000240
-return_lag_5    0.000185
-dtype: float64
+2026-03-15 20:54:35,144 - src.evaluation - INFO - XGBoost MAE: 0.006988
+2026-03-15 20:54:35,145 - src.evaluation - INFO - XGBoost RMSE: 0.009053
+2026-03-15 20:54:35,147 - src.evaluation - INFO - XGBoost R2: -3.3867
+2026-03-15 20:54:35,149 - src.evaluation - INFO - XGBoost Directional Accuracy: 0.501
+2026-03-15 20:54:35,153 - src.evaluation - INFO - XGBoost Top Features:
+vol_lag_1       0.271881
+dist_ma30       0.135903
+range           0.134950
+vol_lag_21      0.058723
+mean_30         0.049835
+volume_lag_1    0.044027
+mean_5          0.036153
+vol_lag_252     0.033483
+vol_lag_63      0.030864
+mean_10         0.030811
+dtype: float32
+2026-03-15 20:54:35,964 - src.evaluation - INFO - Saved plot to reports/random_forest_evaluation.png
+2026-03-15 20:54:36,351 - src.models - INFO - Starting ARIMA rolling forecast for 1256 steps...
+2026-03-15 20:55:00,681 - src.models - INFO -   Rolling forecast: 100/1256 steps done
+2026-03-15 20:55:16,712 - src.models - INFO -   Rolling forecast: 200/1256 steps done
+2026-03-15 20:55:40,945 - src.models - INFO -   Rolling forecast: 300/1256 steps done
+2026-03-15 20:56:09,725 - src.models - INFO -   Rolling forecast: 400/1256 steps done
+2026-03-15 20:56:25,915 - src.models - INFO -   Rolling forecast: 500/1256 steps done
+2026-03-15 20:56:41,561 - src.models - INFO -   Rolling forecast: 600/1256 steps done
+2026-03-15 20:56:58,909 - src.models - INFO -   Rolling forecast: 700/1256 steps done
+2026-03-15 20:57:10,875 - src.models - INFO -   Rolling forecast: 800/1256 steps done
+2026-03-15 20:57:31,452 - src.models - INFO -   Rolling forecast: 900/1256 steps done
+2026-03-15 20:57:51,490 - src.models - INFO -   Rolling forecast: 1000/1256 steps done
+2026-03-15 20:58:18,382 - src.models - INFO -   Rolling forecast: 1100/1256 steps done
+2026-03-15 20:58:34,043 - src.models - INFO -   Rolling forecast: 1200/1256 steps done
+2026-03-15 20:58:42,278 - src.models - INFO - ARIMA Rolling Forecast MAE: 0.000284
+2026-03-15 20:58:42,835 - src.evaluation - INFO - Saved plot to reports/arima_evaluation.png
