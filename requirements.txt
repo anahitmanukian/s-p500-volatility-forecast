@@ -1,0 +1,8 @@
+pandas
+numpy
+pyyaml
+yfinance
+sklearn
+xgboost
+statsmodels
+jupyter
