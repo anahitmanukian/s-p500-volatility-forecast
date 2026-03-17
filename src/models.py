@@ -48,28 +48,6 @@ def run_xgboost(X_train, X_test, y_train, y_test):
     
     return model, y_pred
 
-# 4. ARIMA Model
-# def run_arima(df):
-#     series = df['y'].reset_index(drop=True)
-#     train_size = int(len(series) * 0.8)
-    
-#     train = series[:train_size]
-#     test  = series[train_size:]
-#     test_dates = df.index[train_size:]  # grab dates from original df before reset
-    
-#     p = config['models']['arima']['p']
-#     d = config['models']['arima']['d']
-#     q = config['models']['arima']['q']
-    
-#     model = ARIMA(train, order=(p, d, q))
-#     model_fit = model.fit(method_kwargs={"maxiter": 500})
-    
-#     forecast = model_fit.forecast(steps=len(test))
-#     mae = mean_absolute_error(test, forecast)
-#     logger.info(f"ARIMA Mean Absolute Error: {mae:.6f}")
-    
-#     return model_fit, forecast, test_dates
-
 
 def run_arima(df, max_steps=None):
     series = df['y'].reset_index(drop=True)

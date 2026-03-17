@@ -25,6 +25,20 @@ def create_volatility_features(df, config=None):
             252 - one trading year (~252 trading days)
       
     """
+    
+    # df['return'].shift(1)    # positive → shift DOWN → each row gets the value from 1 row ABOVE (the past)
+    # df['return'].shift(-1)   # negative → shift UP  → each row gets the value from 1 row BELOW (the future)
+    # ```
+
+    # So visually:
+    # ```
+    # original:  [a, b, c, d, e]
+    # shift(1):  [NaN, a, b, c, d]   ← everything moved down, row 0 gets past
+    # shift(-1): [b, c, d, e, NaN]   ← everything moved up, row 0 gets future
+    
+    # df['close'] / df['rolling_mean_5']         close is 10% above MA → gives 1.10
+    # df['close'] / df['rolling_mean_5'] - 1     close is 10% above MA → gives 0.10
+    
     logger.info('Creating new features!') 
         
     if config is None:

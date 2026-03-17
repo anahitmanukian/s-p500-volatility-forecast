@@ -55,38 +55,85 @@ def evaluate_regression(model, y_true, y_pred, model_name, X_train=None):
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-def plot_predictions(y_true, y_pred, model_name, dates=None):
-    fig, axes = plt.subplots(3, 1, figsize=(14, 12))
-    fig.suptitle(f'{model_name} — Volatility Forecast Evaluation', fontsize=14)
+# def plot_predictions(y_true, y_pred, model_name, dates=None):
+#     fig, axes = plt.subplots(3, 3, figsize=(14, 12))
+#     fig.suptitle(f'{model_name} — Volatility Forecast Evaluation', fontsize=14)
 
-    # Plot 1: Actual vs Predicted over time
-    ax1 = axes[0]
+#     # Plot 1: Actual vs Predicted over time
+#     ax1 = axes[0]
+#     x = dates if dates is not None else range(len(y_true))
+#     ax1.plot(x, y_true, label='Actual', color='black', linewidth=1.2)
+#     ax1.plot(x, y_pred, label='Predicted', color='royalblue', linewidth=1, alpha=0.8)
+#     ax1.set_title('Actual vs Predicted Volatility')
+#     ax1.set_ylabel('Volatility')
+#     ax1.legend()
+
+#     # Plot 2: Residuals (errors) over time
+#     ax2 = axes[1]
+#     residuals = np.array(y_true) - np.array(y_pred)
+#     ax2.plot(x, residuals, color='blue', linewidth=0.8)
+#     ax2.axhline(0, color='black', linestyle='--', linewidth=0.8)
+#     ax2.set_title('Residuals (Actual − Predicted)')
+#     ax2.set_ylabel('Error')
+
+#     # Plot 3: Scatter — perfect model would be a diagonal line
+#     ax3 = axes[2]
+#     ax3.scatter(y_true, y_pred, alpha=0.3, s=10, color='steelblue')
+#     min_val = min(min(y_true), min(y_pred))
+#     max_val = max(max(y_true), max(y_pred))
+#     ax3.plot([min_val, max_val], [min_val, max_val], 'r--', linewidth=1)
+#     ax3.set_title('Predicted vs Actual (diagonal = perfect)')
+#     ax3.set_xlabel('Actual')
+#     ax3.set_ylabel('Predicted')
+
+#     plt.tight_layout()
+#     plt.savefig(f'reports/{model_name.lower().replace(" ", "_")}_evaluation.png', dpi=150)
+#     logger.info(f"Saved plot to reports/{model_name.lower().replace(' ', '_')}_evaluation.png")
+#     plt.show()
+    
+def plot_all_models(y_true, predictions: dict, dates=None):
+    # predictions = {
+    #     "Random Forest": y_pred_rf,
+    #     "XGBoost": y_pred_xgb,
+    #     "ARIMA": forecast_arima
+    # }
+    
+    colors = ['royalblue', 'darkorange', 'green']
     x = dates if dates is not None else range(len(y_true))
-    ax1.plot(x, y_true, label='Actual', color='black', linewidth=1.2)
-    ax1.plot(x, y_pred, label='Predicted', color='royalblue', linewidth=1, alpha=0.8)
-    ax1.set_title('Actual vs Predicted Volatility')
-    ax1.set_ylabel('Volatility')
-    ax1.legend()
+    
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5))  # create ONCE outside loop
+    fig.suptitle('Model Comparison — Volatility Forecast', fontsize=14)  
+    
+    axes[0].plot(x, y_true, label='Actual', color='black', linewidth=1.2)
+    for i, (name, y_pred) in enumerate(predictions.items()):
+        axes[0].plot(x, y_pred, label=name, color=colors[i], linewidth=1, alpha=0.8)
+    axes[0].set_title('Actual vs Predicted')
+    axes[0].legend()
+    
+    for i, (name, y_pred) in enumerate(predictions.items()):
+        residuals = np.array(y_true) - np.array(y_pred)
+        axes[1].plot(x, residuals, color=colors[i], linewidth=0.8, plot=name)
+        axes[1].axhline(0, color='black', linestyle='--', linewidth=0.8)
+    axes[1].set_title('Residuals (Actual − Predicted)')
+    axes[1].legend()   
+    
+    for i, (name, y_pred) in enumerate(predictions.items()):
+        axes[2].scatter(y_true, y_pred, label=name, alpha=0.3, s=10, color=colors[i])
 
-    # Plot 2: Residuals (errors) over time
-    ax2 = axes[1]
-    residuals = np.array(y_true) - np.array(y_pred)
-    ax2.plot(x, residuals, color='blue', linewidth=0.8)
-    ax2.axhline(0, color='black', linestyle='--', linewidth=0.8)
-    ax2.set_title('Residuals (Actual − Predicted)')
-    ax2.set_ylabel('Error')
-
-    # Plot 3: Scatter — perfect model would be a diagonal line
-    ax3 = axes[2]
-    ax3.scatter(y_true, y_pred, alpha=0.3, s=10, color='steelblue')
-    min_val = min(min(y_true), min(y_pred))
-    max_val = max(max(y_true), max(y_pred))
-    ax3.plot([min_val, max_val], [min_val, max_val], 'r--', linewidth=1)
-    ax3.set_title('Predicted vs Actual (diagonal = perfect)')
-    ax3.set_xlabel('Actual')
-    ax3.set_ylabel('Predicted')
-
+    # diagonal goes AFTER the loop, once
+    min_val = min(y_true)
+    max_val = max(y_true)
+    axes[2].plot([min_val, max_val], [min_val, max_val], 'r--', linewidth=1)
+    axes[2].set_title('Predicted vs Actual (diagonal = perfect)')
+    axes[2].set_xlabel('Actual')
+    axes[2].set_ylabel('Predicted')
+    axes[2].legend()
+    
+        
     plt.tight_layout()
-    plt.savefig(f'reports/{model_name.lower().replace(" ", "_")}_evaluation.png', dpi=150)
-    logger.info(f"Saved plot to reports/{model_name.lower().replace(' ', '_')}_evaluation.png")
-    plt.show()
+    plt.savefig('reports/model_comparison.png', dpi=150)    
+        
+        
+    
+      
+    
