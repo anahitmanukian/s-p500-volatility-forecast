@@ -4,6 +4,9 @@ import yaml
 from pathlib import Path
 
 def setup_logging():
+    if logging.getLogger().handlers:
+        return
+        
     config_path = Path(__file__).resolve().parent.parent / "config" / "logging.yaml"
 
     with open(config_path) as f:
