@@ -37,7 +37,7 @@ def run_random_forest(X_train, X_test, y_train):
     return model, y_pred
 
 # 3. XGBoost Regressor
-def run_xgboost(X_train, X_test, y_train, y_test):
+def run_xgboost(X_train, X_test, y_train):
     model = xgb.XGBRegressor(
         n_estimators=config['models']['xgboost']['n_estimators'],
         learning_rate=config['models']['xgboost']['learning_rate'],
@@ -106,3 +106,112 @@ def run_arima(df, max_steps=None):
 #   history = [day1, ... day5021, day5022]    ← grow by 1
 
 # ... repeats 1256 times
+
+from sklearn.metrics import r2_score
+
+def walk_forward_rf(df, n_folds=5, fold_size=None):
+    if fold_size is None:
+        fold_size = len(df) // (n_folds + 1)
+    # rest stays the same
+    all_preds = []
+    all_true = []
+    all_dates = [] 
+    
+    cols_to_drop = ['y', 'target_volatility', 'close', 'high', 'low', 'open', 'returns', 'volume']
+    
+    for i in range(1, n_folds + 1):
+        train = df.iloc[:fold_size * i]
+        
+        if i == n_folds:
+            test = df.iloc[fold_size * i:]
+        else:
+            test = df.iloc[fold_size * i : fold_size * (i + 1)]
+        
+        # separate features and target directly — no split_data
+        X_train = train.drop(columns=cols_to_drop)
+        y_train = train['y']
+        X_test  = test.drop(columns=cols_to_drop)
+        y_test  = test['y']
+        
+        model, y_pred = run_random_forest(X_train, X_test, y_train)
+        
+        all_preds.append(y_pred)
+        all_true.append(y_test.values)
+        all_dates.append(test.index)  # collect dates from each fold
+        
+        # logger.info(f"Fold {i} MAE: {mean_absolute_error(y_test, y_pred):.6f}")
+        mae = mean_absolute_error(y_test, y_pred)
+        r2  = r2_score(y_test, y_pred)
+        dir_acc = np.mean(
+            np.sign(pd.Series(y_test.values).reset_index(drop=True).diff()) == 
+            np.sign(pd.Series(y_pred).diff())
+        )
+        
+        logger.info(f"Fold {i} — MAE: {mae:.6f} | R2: {r2:.4f} | Dir Acc: {dir_acc:.3f}")
+    
+    all_preds_flat = np.concatenate(all_preds)
+    all_true_flat  = np.concatenate(all_true)
+    all_dates_flat = all_dates[0].append(all_dates[1:])  # flatten date index
+    
+    logger.info(f"Walk-forward Random Forest MAE: {mean_absolute_error(all_true_flat, all_preds_flat):.6f}")
+    logger.info(f"Walk-forward Random Forest R2:  {r2_score(all_true_flat, all_preds_flat):.4f}")
+    return model, all_preds_flat, all_true_flat, all_dates_flat
+
+# fold_size = 6276 // 6 = 1046 rows
+
+# Fold 1: train = rows 0    → 1046  (1046 rows)
+#         test  = rows 1046 → 2092  (1046 rows)
+
+# Fold 2: train = rows 0    → 2092  (2092 rows)
+#         test  = rows 2092 → 3138  (1046 rows)
+
+# Fold 3: train = rows 0    → 3138  (3138 rows)
+#         test  = rows 3138 → 4184  (1046 rows)
+
+def walk_forward_xgboost(df, n_folds=5, fold_size=None):
+    if fold_size is None:
+        fold_size = len(df) // (n_folds + 1)
+    # rest stays the same
+    all_preds = []
+    all_true = []
+    all_dates = []
+    
+    cols_to_drop = ['y', 'target_volatility', 'close', 'high', 'low', 'open', 'returns', 'volume']
+    
+    for i in range(1, n_folds + 1):
+        train = df.iloc[:fold_size * i]
+        
+        if i == n_folds:
+            test = df.iloc[fold_size * i:]
+        else:
+            test = df.iloc[fold_size * i : fold_size * (i + 1)]
+        
+        # separate features and target directly — no split_data
+        X_train = train.drop(columns=cols_to_drop)
+        y_train = train['y']
+        X_test  = test.drop(columns=cols_to_drop)
+        y_test  = test['y']
+        
+        model, y_pred = run_xgboost(X_train, X_test, y_train)
+        
+        all_preds.append(y_pred)
+        all_true.append(y_test.values)
+        all_dates.append(test.index)
+        
+        # logger.info(f"Fold {i} MAE: {mean_absolute_error(y_test, y_pred):.6f}")
+        mae = mean_absolute_error(y_test, y_pred)
+        r2  = r2_score(y_test, y_pred)
+        dir_acc = np.mean(
+            np.sign(pd.Series(y_test.values).reset_index(drop=True).diff()) == 
+            np.sign(pd.Series(y_pred).diff())
+        )
+        
+        logger.info(f"Fold {i} — MAE: {mae:.6f} | R2: {r2:.4f} | Dir Acc: {dir_acc:.3f}")
+    
+    all_preds_flat = np.concatenate(all_preds)
+    all_true_flat  = np.concatenate(all_true)
+    all_dates_flat = all_dates[0].append(all_dates[1:])  # flatten date index
+    
+    logger.info(f"Walk-forward XGBOOST MAE: {mean_absolute_error(all_true_flat, all_preds_flat):.6f}")
+    logger.info(f"Walk-forward XGBOOST R2:  {r2_score(all_true_flat, all_preds_flat):.4f}")
+    return model, all_preds_flat, all_true_flat, all_dates_flat
