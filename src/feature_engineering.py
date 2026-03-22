@@ -81,7 +81,7 @@ def save_feature_engineering_csv(df, feature_engineering_path=None):
     if feature_engineering_path is None:
         # Load from config
         config = load_config()
-        feature_engineering_path = config['paths']['feature_engineering_path']
+        feature_engineering_path = config['paths']['feature_engineering_data']
     
     # Create directory if it doesn't exist
     Path(feature_engineering_path).parent.mkdir(parents=True, exist_ok=True)
@@ -97,5 +97,5 @@ def save_feature_engineering_csv(df, feature_engineering_path=None):
 
 # The Goal: 
     # We want to predict the Standard Deviation of Returns (the y column in your dataframe),
-    # which tells us how much the price is likely to "swing" tomorrow, 
+    # which tells us how much the price is likely to "swing" tomorrow(30 days), 
     # regardless of whether it goes up or down
