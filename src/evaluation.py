@@ -2,6 +2,9 @@ import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import logging
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # use file-based backend, no GUI window needed
+import matplotlib.pyplot as plt
 
 logger = logging.getLogger(__name__)
 
@@ -52,46 +55,10 @@ def evaluate_regression(model, y_true, y_pred, model_name, X_train=None):
 
     return mae, rmse, r2, directional_acc
 
-import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-# def plot_predictions(y_true, y_pred, model_name, dates=None):
-#     fig, axes = plt.subplots(3, 3, figsize=(14, 12))
-#     fig.suptitle(f'{model_name} — Volatility Forecast Evaluation', fontsize=14)
-
-#     # Plot 1: Actual vs Predicted over time
-#     ax1 = axes[0]
-#     x = dates if dates is not None else range(len(y_true))
-#     ax1.plot(x, y_true, label='Actual', color='black', linewidth=1.2)
-#     ax1.plot(x, y_pred, label='Predicted', color='royalblue', linewidth=1, alpha=0.8)
-#     ax1.set_title('Actual vs Predicted Volatility')
-#     ax1.set_ylabel('Volatility')
-#     ax1.legend()
-
-#     # Plot 2: Residuals (errors) over time
-#     ax2 = axes[1]
-#     residuals = np.array(y_true) - np.array(y_pred)
-#     ax2.plot(x, residuals, color='blue', linewidth=0.8)
-#     ax2.axhline(0, color='black', linestyle='--', linewidth=0.8)
-#     ax2.set_title('Residuals (Actual − Predicted)')
-#     ax2.set_ylabel('Error')
-
-#     # Plot 3: Scatter — perfect model would be a diagonal line
-#     ax3 = axes[2]
-#     ax3.scatter(y_true, y_pred, alpha=0.3, s=10, color='steelblue')
-#     min_val = min(min(y_true), min(y_pred))
-#     max_val = max(max(y_true), max(y_pred))
-#     ax3.plot([min_val, max_val], [min_val, max_val], 'r--', linewidth=1)
-#     ax3.set_title('Predicted vs Actual (diagonal = perfect)')
-#     ax3.set_xlabel('Actual')
-#     ax3.set_ylabel('Predicted')
-
-#     plt.tight_layout()
-#     plt.savefig(f'reports/{model_name.lower().replace(" ", "_")}_evaluation.png', dpi=150)
-#     logger.info(f"Saved plot to reports/{model_name.lower().replace(' ', '_')}_evaluation.png")
-#     plt.show()
     
-def plot_all_models(y_true, predictions: dict, dates=None):
+def plot_all_models(y_true, predictions: dict, dates=None,filename='model_comparison'):
     # predictions = {
     #     "Random Forest": y_pred_rf,
     #     "XGBoost": y_pred_xgb,
@@ -112,7 +79,7 @@ def plot_all_models(y_true, predictions: dict, dates=None):
     
     for i, (name, y_pred) in enumerate(predictions.items()):
         residuals = np.array(y_true) - np.array(y_pred)
-        axes[1].plot(x, residuals, color=colors[i], linewidth=0.8, plot=name)
+        axes[1].plot(x, residuals, color=colors[i], linewidth=0.8, label=name)
         axes[1].axhline(0, color='black', linestyle='--', linewidth=0.8)
     axes[1].set_title('Residuals (Actual − Predicted)')
     axes[1].legend()   
@@ -131,7 +98,7 @@ def plot_all_models(y_true, predictions: dict, dates=None):
     
         
     plt.tight_layout()
-    plt.savefig('reports/model_comparison.png', dpi=150)    
+    plt.savefig(f'reports/{filename}.png', dpi=150)   
         
         
     
