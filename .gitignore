@@ -3,3 +3,6 @@ config
 __pycache__/
 feature_engineering.py
 a.ipynb
+logs/
+testing.ipynb
+data/
